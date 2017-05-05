@@ -1,6 +1,6 @@
 spring:
   application:
-    name: search
+    name: product
   cloud:
     config:
       uri: http://localhost:8083

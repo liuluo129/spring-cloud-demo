@@ -3,12 +3,12 @@ package com.study.springcloud.search;
 import java.util.Collections;
 import java.util.List;
 
-import com.study.springcloud.product.Product;
-import com.study.springcloud.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author mushui
@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class SearchController {
 
 	@Autowired
-	private ProductService productService;
+	@LoadBalanced
+	private RestTemplate loadBalanced;
 
 	@RequestMapping(value = "/go.do", method = RequestMethod.GET, params = {"key"})
-	public List<Product> go(String key) {
-		return productService.listProduct(search(key));
+	public List<Product> go(String key) throws Exception {
+		List<Integer> pidList = search(key);
+		String url = "http://PRODUCT/product/getById.do?id=" + pidList.get(0);
+		return Collections.singletonList(loadBalanced.getForObject(url, Product.class));
 	}
 
 	private List<Integer> search(String key) {
