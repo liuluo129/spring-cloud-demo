@@ -1,6 +1,5 @@
 package com.study.springcloud.product;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 
 	@Autowired
-	private ProductDAO productDAO;
+	private com.study.springcloud.product.ProductDAO productDAO;
 
 	public Product getProductById(int id) {
 		return productDAO.getProductById(id);
