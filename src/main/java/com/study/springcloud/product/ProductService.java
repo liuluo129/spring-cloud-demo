@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,17 +14,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService {
 
+	@Autowired
+	private ProductDAO productDAO;
+
 	public Product getProductById(int id) {
-		Product product = new Product();
-		product.setId(id);
-		product.setName("wine: " + id);
-		product.setPrice(20);
-		return product;
+		return productDAO.getProductById(id);
 	}
 
 	public List<Product> listProduct(List<Integer> idList) {
 		return idList.stream()
 					   .map(id -> getProductById(id))
+					   .filter(product -> product != null)
 					   .collect(Collectors.toList());
 	}
 }

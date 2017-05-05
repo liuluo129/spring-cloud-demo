@@ -27,6 +27,6 @@ public class SearchController {
 	}
 
 	private List<Integer> search(String key) {
-		return Collections.singletonList(10);
+		return Collections.singletonList(1);
 	}
 }
