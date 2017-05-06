@@ -5,6 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: file:/Users/mushui/workspace/git-repository/config_repo
+          uri: https://github.com/liuluo129/spring-cloud-config-repo
+
 server:
   port: 8083
