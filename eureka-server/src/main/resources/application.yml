@@ -1,9 +1,11 @@
+---
+
+spring:
+  profiles: standalone
+
 server:
   port: 8010
 
-spring:
-  application:
-    name: eureka-server
 
 eureka:
   instance:
@@ -16,3 +18,34 @@ eureka:
     service-url:
       default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
+
+---
+# java -jar -Dspring.profiles.active=peer1 target/xx.jar
+
+spring:
+  profiles: peer1                                 # 指定profile=peer1
+
+eureka:
+  instance:
+    hostname: peer1                               # 指定当profile=peer1时，主机名
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:8012/eureka/      # 将自己注册到peer2这个Eureka上面去
+
+server:
+  port: 8011
+
+---
+
+spring:
+  profiles: peer2
+
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8011/eureka/
+
+server:
+  port: 8012
