@@ -30,7 +30,7 @@ eureka:
     hostname: peer1                               # 指定当profile=peer1时，主机名
   client:
     serviceUrl:
-      defaultZone: http://peer2:8012/eureka/      # 将自己注册到peer2这个Eureka上面去
+      defaultZone: http://peer2:8011/eureka/      # 将自己注册到peer2这个Eureka上面去
 
 server:
   port: 8011
@@ -45,7 +45,7 @@ eureka:
     hostname: peer2
   client:
     serviceUrl:
-      defaultZone: http://peer1:8011/eureka/
+      defaultZone: http://peer1:8012/eureka/
 
 server:
   port: 8012
