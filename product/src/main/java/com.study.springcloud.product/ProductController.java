@@ -1,5 +1,7 @@
 package com.study.springcloud.product;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class ProductController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
+
 	@Autowired
 	private ProductService productService;
 
@@ -30,6 +34,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/getById.do", method = RequestMethod.GET, params = {"id"})
 	public Product getProductById(int id) {
+		LOGGER.info("get by id: {}", id);
 		return productService.getProductById(id);
 	}
 }
