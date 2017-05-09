@@ -1,13 +1,2 @@
 server:
   port: 8081
-
-spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    username: rili365
-    password: ChenShy@806
-    url: jdbc:mysql://cobar:3306/rili365?autoReconnect=false&characterEncoding=UTF-8&useUnicode=true&zeroDateTimeBehavior=convertToNull&jdbcCompliantTruncation=false
-    initial-size: 5
-    max-active: 8
-    max-wait: 10000
-    type: com.alibaba.druid.pool.DruidDataSource # 指定数据库连接池类型,默认是tomcat pool
