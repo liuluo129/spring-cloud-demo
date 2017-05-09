@@ -3,6 +3,8 @@ package com.study.springcloud.search;
 import java.util.Collections;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/search")
 public class SearchController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SearchController.class);
 
 	@Autowired
 	@LoadBalanced
@@ -24,6 +27,7 @@ public class SearchController {
 
 	@RequestMapping(value = "/go.do", method = RequestMethod.GET, params = {"key"})
 	public List<Product> go(String key) throws Exception {
+		LOGGER.info("search request: {}", key);
 		List<Integer> pidList = search(key);
 		String url = "http://PRODUCT/product/getById.do?id=" + pidList.get(0);
 		return Collections.singletonList(loadBalanced.getForObject(url, Product.class));
