@@ -25,6 +25,7 @@
         <module>hystrix-demo</module>
         <module>hystrix-dashboard</module>
         <module>hystrix-turbine</module>
+        <module>zipkin-service</module>
     </modules>
 
     <properties>
