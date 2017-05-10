@@ -27,11 +27,11 @@ spring:
 
 eureka:
   instance:
-    hostname: peer1                               # 指定当profile=peer1时，主机名
+    hostname: peer1
     preferIpAddress: true
   client:
     serviceUrl:
-      defaultZone: http://peer2:8011/eureka/      # 将自己注册到peer2这个Eureka上面去
+      defaultZone: http://peer2:8012/eureka/
 
 server:
   port: 8011
@@ -47,7 +47,7 @@ eureka:
     preferIpAddress: true
   client:
     serviceUrl:
-      defaultZone: http://peer1:8012/eureka/
+      defaultZone: http://peer1:8011/eureka/
 
 server:
   port: 8012
