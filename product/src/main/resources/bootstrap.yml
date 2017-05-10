@@ -15,3 +15,5 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://peer1:8011/eureka/,http://peer2:8012/eureka/
+  instance:
+    preferIpAddress: true
