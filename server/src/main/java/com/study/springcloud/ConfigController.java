@@ -11,6 +11,7 @@ import com.netflix.config.sources.JDBCConfigurationSource;
 import org.apache.commons.configuration.AbstractConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @created 2017-05-10 上午11:25
  */
 @RestController
+@RefreshScope
 public class ConfigController {
 
 	@Autowired
